@@ -11,4 +11,6 @@ start:  nodemon index.js
 
 # created .gitignore file
 
-
+# heroku urls
+https://rhs-pivot-backend.herokuapp.com/ 
+| https://git.heroku.com/rhs-pivot-backend.git
