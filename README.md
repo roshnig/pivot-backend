@@ -15,4 +15,4 @@ start:  nodemon app.js
 https://rhs-pivot-backend.herokuapp.com/ 
 | https://git.heroku.com/rhs-pivot-backend.git
 
-in package.json - changed node app.js
+in package.json - changed node app.js (because it was not working with nodemon on heroku)
