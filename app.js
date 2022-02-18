@@ -1,6 +1,6 @@
 const express = require("express")
 const app = express();
-const http = require('http');
+//const http = require('http');
 const cors = require('cors');
 app.use(cors());
 
@@ -13,7 +13,7 @@ app.use(cors());
 //     }
 // });
 
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
     res.send('Its working from server')
 });
 
@@ -33,4 +33,4 @@ app.listen(PORT, (err) => {
     console.log(`Server listening on port ${PORT} ....`);
 })
 
-//module.exports = server;
+module.exports = app;
