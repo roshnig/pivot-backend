@@ -10,16 +10,15 @@
 </head>
 
 <body>
-    <div class="main-div">
+    <div class="main-div" id="hide-div">
         <header>
             <p>header</p>
         </header>
         <main>
             <h3>Choose your answer</h3>
             <form id="form">
-                <input id='input' value=""></input>
             </form>
-            <button type="submit">Submit</button>
+            <button type="submit" onclick="handleSubmit()">Submit</button>
         </main>
     </div>
     <script src="/socket.io/socket.io.js"></script>
