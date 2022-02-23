@@ -7,9 +7,10 @@ Backend for pivot
 npm init
 npm install express socket.io cors
 npm install nodemon -D
+npm install --save mongoose
 
 package.json file, inside script tag added this-
-start: nodemon app.js
+start: nodemon app.js, need to change before deploy
 
 # created .gitignore file
 
