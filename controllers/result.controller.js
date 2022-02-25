@@ -1,19 +1,19 @@
 const Result = require("../models/result.model");
 
-const getAllResults = async (req, res) => {
+const getAllResults = async (req, res, next) => {
   try {
     const results = await Result.find({});
     res.status(200).json({ results });
   } catch (error) {
-    res.status(500).json({ msg: error });
+    next(error);
   }
 };
-const createResult = async (req, res) => {
+const createResult = async (req, res, next) => {
   try {
     const result = await Result.create(req.body);
     res.status(201).json({ result });
   } catch (error) {
-    res.status(500).json({ msg: error });
+    next(error);
   }
 };
 const getResult = async (req, res) => {
@@ -25,7 +25,7 @@ const getResult = async (req, res) => {
     }
     res.status(200).send({ result });
   } catch (error) {
-    res.status(500).json({ msg: error });
+    next(error);
   }
 };
 const updateResult = (req, res) => {
