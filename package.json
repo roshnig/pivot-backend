@@ -5,7 +5,8 @@
   "main": "y",
   "scripts": {
     "test": "test",
-    "start": "node listen.js"
+    "start": "node listen.js",
+    "watch": "nodemon listen.js"
   },
   "repository": {
     "type": "git",
