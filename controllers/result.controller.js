@@ -8,6 +8,7 @@ const getAllResults = async (req, res, next) => {
     next(error);
   }
 };
+
 const createResult = async (req, res, next) => {
   try {
     const result = await Result.create(req.body);
@@ -16,6 +17,7 @@ const createResult = async (req, res, next) => {
     next(error);
   }
 };
+
 const getResult = async (req, res) => {
   try {
     const { id: resultID } = req.params;
@@ -28,11 +30,19 @@ const getResult = async (req, res) => {
     next(error);
   }
 };
+
 const updateResult = (req, res) => {
   res.send("All items from controller");
 };
+
 const deleteResult = (req, res) => {
   res.send("All items from controller");
 };
 
-module.exports = { getAllResults, createResult, getResult, updateResult, deleteResult };
+module.exports = {
+  getAllResults,
+  createResult,
+  getResult,
+  updateResult,
+  deleteResult,
+};
