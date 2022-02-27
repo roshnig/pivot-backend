@@ -21,9 +21,3 @@ const PresentationSchema = new mongoose.Schema({
 });
 
 module.exports = mongoose.model("Presentation", PresentationSchema);
-
-exports.createPresentation = (presentationId, slides) => {
-  const sessionId = Math.random().toString(36).slice(-4);
-  const pres = new Presentation({ presentationId, slides, sessionId });
-  return pres.save();
-};

@@ -6,6 +6,15 @@ exports.postPresentation = (req, res, next) => {
   const presentation = new Presentation({ presentationId, slides, sessionId });
   presentation
     .save()
+    .then(() => {
+      res.status(200).send({ sessionId });
+    })
+    .catch((err) => next(err));
+};
+
+exports.getPresentation = (req, res, next) => {
+  const { sessionId } = req.params;
+  return Presentation.findOne({ sessionId })
     .then((presentation) => {
       res.status(200).send({ presentation });
     })

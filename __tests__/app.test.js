@@ -6,6 +6,8 @@ db();
 
 afterAll(() => mongoose.disconnect());
 
+let sessionId;
+
 describe("GET /api", () => {
   it("serves a description of the api", () => {
     return request(app).get("/api").expect(200);
@@ -13,10 +15,8 @@ describe("GET /api", () => {
 });
 
 describe("POST /api/presentations/", () => {
-  let sessionId = "";
-  const presentationId = "2893rhf834";
   const pres = {
-    presentationId,
+    presentationId: "2893rhf834",
     slides: [
       {
         slideId: "78rh3784r34",
@@ -34,8 +34,25 @@ describe("POST /api/presentations/", () => {
       .send(pres)
       .expect(200)
       .then(({ body }) => {
-        sessionId = body.presentation.sessionId;
+        sessionId = body.sessionId;
         expect(sessionId).toMatch(/^[a-z0-9]{4}$/);
+      });
+  });
+});
+
+describe("GET /api/presentations/:sessionId", () => {
+  it("200: returns presentation data given session id", () => {
+    console.log(sessionId, "<<<<<<<");
+    return request(app)
+      .get(`/api/presentations/${sessionId}`)
+      .expect(200)
+      .then(({ body }) => {
+        console.log(body);
+        expect(body.presentation).toMatchObject({
+          sessionId: expect.any(String),
+          presentationId: expect.any(String),
+          slides: expect.any(Array),
+        });
       });
   });
 });
