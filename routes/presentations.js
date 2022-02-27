@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const { putPresentation } = require("../controllers/presentations.controller");
+const { postPresentation } = require("../controllers/presentations.controller");
 
-router.put("/:presentationId", putPresentation);
+router.post("/", postPresentation);
+//router.get("/:sessionId", getPresentation);
 
 module.exports = router;

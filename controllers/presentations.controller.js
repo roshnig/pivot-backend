@@ -1,12 +1,11 @@
-const { updatePresentation } = require("../models/presentations.model");
+const { createPresentation } = require("../models/presentations.model");
 
-exports.putPresentation = (req, res, next) => {
-  const { presentationId } = req.params;
-  const slides = req.body;
-  console.log(slides);
-  updatePresentation(presentationId, slides)
+exports.postPresentation = (req, res, next) => {
+  const { presentationId, slides } = req.body;
+  console.log(presentationId, slides);
+  createPresentation(presentationId, slides)
     .then((presentation) => {
-      res.status(201).send({ presentation });
+      res.status(200).send({ presentation });
     })
     .catch((err) => next(err));
 };

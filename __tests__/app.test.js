@@ -12,9 +12,10 @@ describe("GET /api", () => {
   });
 });
 
-describe(" PUT /api/presentations/:presentationId", () => {
+describe(" POST /api/presentations/", () => {
   const presentationId = "2893rhf834";
   const pres = {
+    presentationId,
     slides: [
       {
         slideId: "78rh3784r34",
@@ -26,10 +27,13 @@ describe(" PUT /api/presentations/:presentationId", () => {
       },
     ],
   };
-  it("responds with status 201", () => {
+  it("responds with status 200 create presentation,returns saved document with session id", () => {
     return request(app)
-      .put(`/api/presentations/${presentationId}`)
+      .post(`/api/presentations/`)
       .send(pres)
-      .expect(201);
+      .expect(200)
+      .then((res) => {
+        console.log(res.body);
+      });
   });
 });

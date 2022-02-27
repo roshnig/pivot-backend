@@ -1,7 +1,9 @@
 const mongoose = require("mongoose");
+const { generateWordId } = require("letter-id");
 
 const PresentationSchema = new mongoose.Schema({
   presentationId: { type: String, required: true },
+  sessionId: String,
   slides: [
     {
       slideImageUrl: String,
@@ -10,6 +12,12 @@ const PresentationSchema = new mongoose.Schema({
         slideId: String,
         numAnswers: Number,
         correctAnswer: { type: String, enum: ["A", "B", "C", "D", "E", "F"] },
+        responses: [
+          {
+            username: String,
+            answer: { type: String, enum: ["A", "B", "C", "D", "E", "F"] },
+          },
+        ],
       },
     },
   ],
@@ -17,9 +25,10 @@ const PresentationSchema = new mongoose.Schema({
 
 const Presentation = mongoose.model("Presentation", PresentationSchema);
 
-exports.updatePresentation = (idFromQuery, data) => {
+exports.createPresentation = (presentationId, slides) => {
   console.log("in model");
-  const filter = { presentationId: idFromQuery };
-  const options = { upsert: true, new: true };
-  return Presentation.findOneAndUpdate(filter, data, options).exec();
+  const sessionId = generateWordId(3);
+  console.log(sessionId);
+  const pres = new Presentation({ presentationId, slides, sessionId });
+  return pres.save();
 };
