@@ -1,9 +1,11 @@
-const { createPresentation } = require("../models/presentations.model");
+const Presentation = require("../models/presentations.model");
 
 exports.postPresentation = (req, res, next) => {
   const { presentationId, slides } = req.body;
-  console.log(presentationId, slides);
-  createPresentation(presentationId, slides)
+  const sessionId = Math.random().toString(36).slice(-4);
+  const presentation = new Presentation({ presentationId, slides, sessionId });
+  presentation
+    .save()
     .then((presentation) => {
       res.status(200).send({ presentation });
     })

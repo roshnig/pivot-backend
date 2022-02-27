@@ -5,7 +5,6 @@ const cors = require("cors");
 app.use(cors());
 const home = require("./routes/home");
 const apiInfo = require("./routes/apiInfo");
-const results = require("./routes/results");
 const presentations = require("./routes/presentations");
 
 const {
@@ -18,7 +17,6 @@ app.use(express.json());
 
 app.use("/", home);
 app.use("/api", apiInfo);
-app.use("/api/results", results);
 app.use("/api/presentations", presentations);
 
 app.all("*", handleInvalidUrlErrors);

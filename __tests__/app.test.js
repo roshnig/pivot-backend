@@ -12,7 +12,8 @@ describe("GET /api", () => {
   });
 });
 
-describe(" POST /api/presentations/", () => {
+describe("POST /api/presentations/", () => {
+  let sessionId = "";
   const presentationId = "2893rhf834";
   const pres = {
     presentationId,
@@ -27,13 +28,14 @@ describe(" POST /api/presentations/", () => {
       },
     ],
   };
-  it("responds with status 200 create presentation,returns saved document with session id", () => {
+  it("200: create presentation, returns saved document with a four character alphanumeric session id", () => {
     return request(app)
       .post(`/api/presentations/`)
       .send(pres)
       .expect(200)
-      .then((res) => {
-        console.log(res.body);
+      .then(({ body }) => {
+        sessionId = body.presentation.sessionId;
+        expect(sessionId).toMatch(/^[a-z0-9]{4}$/);
       });
   });
 });
