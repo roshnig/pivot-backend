@@ -5,7 +5,7 @@ const ResultSchema = new mongoose.Schema({
   correctAnswer: String,
   poolDuration: Number,
   answer: String,
-  isActive: Boolean
+  isActive: Boolean,
 });
 
 module.exports = mongoose.model("Results", ResultSchema);

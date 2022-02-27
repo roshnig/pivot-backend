@@ -1,11 +1,7 @@
 const express = require("express");
 const router = express.Router();
+const { putPresentation } = require("../controllers/presentations.controller");
 
-router.get("/", (req, res, next) => {
-  try {
-    res.send("Welcome to Pivot api");
-  } catch (err) {
-    next(error);
-  }
-});
+router.put("/:presentationId", putPresentation);
+
 module.exports = router;
