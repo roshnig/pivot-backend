@@ -1,18 +1,5 @@
 const express = require("express");
 const app = express();
-require("dotenv").config();
-const mongoose = require("mongoose");
-
-const url = process.env.MONGO_URI;
-
-mongoose
-  .connect(url, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => app.listen(3000))
-  .catch((err) => console.log(err));
-
 const cors = require("cors");
 app.use(cors());
 const home = require("./routes/home");
