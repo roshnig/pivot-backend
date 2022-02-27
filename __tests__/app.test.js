@@ -2,6 +2,7 @@ const app = require("../app");
 const request = require("supertest");
 const db = require("../db/connect.js");
 const mongoose = require("mongoose");
+db();
 
 afterAll(() => mongoose.disconnect());
 

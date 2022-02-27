@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const PresentationSchema = new mongoose.Schema({
-  presentationId: String,
+  presentationId: { type: String, required: true },
   slides: [
     {
       slideImageUrl: String,
@@ -21,9 +21,5 @@ exports.updatePresentation = (idFromQuery, data) => {
   console.log("in model");
   const filter = { presentationId: idFromQuery };
   const options = { upsert: true, new: true };
-  return Presentation.findOneAndUpdate(filter, data, options)
-    .then((result) => console.log(result))
-    .catch((err) => console.log(err));
+  return Presentation.findOneAndUpdate(filter, data, options).exec();
 };
-
-// module.exports = mongoose.model("Presentations", PresentationSchema);
