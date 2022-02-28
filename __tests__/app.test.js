@@ -41,8 +41,7 @@ describe("POST /api/presentations/", () => {
 });
 
 describe("GET /api/presentations/:sessionId", () => {
-  it("200: returns presentation data given session id", () => {
-    console.log(sessionId, "<<<<<<<");
+  test("200: returns presentation data given session id", () => {
     return request(app)
       .get(`/api/presentations/${sessionId}`)
       .expect(200)
@@ -54,5 +53,8 @@ describe("GET /api/presentations/:sessionId", () => {
           slides: expect.any(Array),
         });
       });
+  });
+  test("404: sessionId not found", () => {
+    return request(app).get(`/api/presentations/INVALIDSESSIONID`).expect(404);
   });
 });

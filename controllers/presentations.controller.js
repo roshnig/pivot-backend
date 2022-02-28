@@ -16,6 +16,9 @@ exports.getPresentation = (req, res, next) => {
   const { sessionId } = req.params;
   return Presentation.findOne({ sessionId })
     .then((presentation) => {
+      if (presentation === null) {
+        return Promise.reject({ status: 404, msg: "sessionId not found" });
+      }
       res.status(200).send({ presentation });
     })
     .catch((err) => next(err));
