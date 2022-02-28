@@ -38,7 +38,7 @@ io.on("connection", (socket) => {
     io.emit('current_slide', 'slide_id_123')
   })
 
-  socket.on('test', (data) => {
+  socket.on('student_answer', (data) => {
     console.log(data, '<<from student fe')
   })
 
