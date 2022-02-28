@@ -2,7 +2,14 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 app.use(cors());
-const server = require("http").createServer(app);
+require("dotenv").config();
+const http = require("http");
+app.server = http.createServer(app);
+const options = {
+  cors: true,
+  origins: ["http://localhost:3000/presentations/"],
+};
+io = require("socket.io")(app.server, options);
 const home = require("./routes/home");
 const apiInfo = require("./routes/apiInfo");
 const presentations = require("./routes/presentations");
@@ -22,7 +29,6 @@ app.use("/api/presentations", presentations);
 app.all("*", handleInvalidUrlErrors);
 app.use(handleCustomErrors);
 app.use(handleServerErrors);
-
 io.on("connection", (socket) => {
   console.log(`User connected ${socket.id}`);
 
@@ -31,8 +37,6 @@ io.on("connection", (socket) => {
     //socket.to(student).emit('receive_message', data)
     //io.emit('receive_message', data)  // this need to emit to student portal
   });
-
-  // when someone leaves the chat room
   socket.on("disconnect", () => {
     console.log("user disconnected", socket.id);
   });
