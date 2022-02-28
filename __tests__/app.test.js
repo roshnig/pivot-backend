@@ -2,9 +2,14 @@ const app = require("../app");
 const request = require("supertest");
 const db = require("../db/connect.js");
 const mongoose = require("mongoose");
-db();
 
-afterAll(() => mongoose.disconnect());
+beforeAll(async () => {
+  await db();
+});
+
+afterAll(async () => {
+  await mongoose.connection.close();
+});
 
 let sessionId;
 

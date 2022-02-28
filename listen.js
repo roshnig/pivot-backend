@@ -4,7 +4,7 @@ const app = require("./app");
 const connectDB = require("./db/connect");
 const options = {
   cors: true,
-  origins: [process.env.TEACHER_URL, PROCESS.ENV.STUDENT_URL],
+  origins: [process.env.TEACHER_URL, process.env.STUDENT_URL],
 };
 
 connectDB().then(() => {

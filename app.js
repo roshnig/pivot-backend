@@ -31,11 +31,8 @@ app.use(handleCustomErrors);
 app.use(handleServerErrors);
 io.on("connection", (socket) => {
   console.log(`User connected ${socket.id}`);
-
   socket.on("current_session", (data) => {
     console.log(data);
-    //socket.to(student).emit('receive_message', data)
-    //io.emit('receive_message', data)  // this need to emit to student portal
   });
   socket.on("disconnect", () => {
     console.log("user disconnected", socket.id);
