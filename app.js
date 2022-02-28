@@ -6,9 +6,6 @@ require("dotenv").config();
 const http = require("http");
 app.server = http.createServer(app);
 
-//TEACHER_URL=https://pivot-fe-presenter.netlify.app/presentations/
-//STUDENT_URL=https://pivot-fe.netlify.app/
-
 const options = {
   cors: true,
   origins: ["http://localhost:3000/presentations/"],
