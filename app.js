@@ -36,16 +36,29 @@ io.on("connection", (socket) => {
   socket.on('student_login', (data) => {
     console.log(data)
     // socket.to(data).emit('receive_message', data)
-    io.emit('current_slide', 'slide_id_123')
+    //io.emit('current_slide', 'slide_id_123')
   })
 
   socket.on('test', (data) => {
     console.log(data, '<<from student fe')
   })
 
-  socket.on("current_session", (data) => {
-    console.log(data);
+  socket.on('student_submit_response', (data) => {
+    console.log(data, '<<from student fe')
+    io.emit('response_count', 1)
+  })
+
+  socket.on("teacher_current_slide", (slideId) => {
+    console.log(slideId);
+    io.emit('current_slide', 'slideId') //need to test this
   });
+
+  socket.on("teacher_slide_stop", (slideId) => {
+    console.log(slideId);
+    // io.emit('current_slide_responses', slideResponseData) //need to emit all responses for that slide
+  });
+
+
   socket.on("disconnect", () => {
     console.log("user disconnected", socket.id);
   });
