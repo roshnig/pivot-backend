@@ -7,9 +7,11 @@ const PresentationSchema = new mongoose.Schema({
     {
       slideImageUrl: String,
       slideId: String,
-      hasQuestion: Boolean,
-      numAnswers: Number,
-      correctAnswer: { type: String, enum: ["A", "B", "C", "D", "E", "F"] },
+      question: {
+        hasQuestion: Boolean,
+        numAnswers: Number,
+        correctAnswer: { type: String, enum: ["A", "B", "C", "D", "E", "F"] },
+      },
       responses: [
         {
           username: String,
