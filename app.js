@@ -7,7 +7,7 @@ const https = require("https");
 app.server = https.createServer(app);
 const options = {
   cors: true,
-  origins: ["http://localhost:3000/presentations/"],
+  origins: ["https://pivot-fe-presenter.netlify.app/presentations/"],
 };
 io = require("socket.io")(app.server, options);
 const home = require("./routes/home");
