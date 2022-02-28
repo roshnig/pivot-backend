@@ -8,4 +8,5 @@ const db = async () => {
     useUnifiedTopology: true,
   });
 };
+
 module.exports = db;
