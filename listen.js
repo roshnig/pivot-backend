@@ -1,10 +1,10 @@
 require("dotenv").config();
-const { PORT = 3000 } = process.env;
+const { PORT = 9090 } = process.env;
 const app = require("./app");
 const connectDB = require("./db/connect");
 const options = {
   cors: true,
-  origins: ["http://localhost:3000/presentations/"],
+  origins: [process.env.TEACHER_URL, PROCESS.ENV.STUDENT_URL],
 };
 
 connectDB().then(() => {
