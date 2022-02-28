@@ -3,11 +3,15 @@ const app = express();
 const cors = require("cors");
 app.use(cors());
 require("dotenv").config();
-const https = require("https");
-app.server = https.createServer(app);
+const http = require("http");
+app.server = http.createServer(app);
+
+//TEACHER_URL=https://pivot-fe-presenter.netlify.app/presentations/
+//STUDENT_URL=https://pivot-fe.netlify.app/
+
 const options = {
   cors: true,
-  origins: ["https://pivot-fe-presenter.netlify.app/presentations/"],
+  origins: ["http://localhost:3000/presentations/"],
 };
 io = require("socket.io")(app.server, options);
 const home = require("./routes/home");
