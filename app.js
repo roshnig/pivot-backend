@@ -12,6 +12,30 @@ const options = {
 };
 const io = require('socket.io')(server, options);
 
+
+//studedent
+const options1 = {
+  cors: true,
+  origins: ['http://localhost:3000/Form'],
+};
+
+const io1 = require('socket.io')(server, options1);
+
+io1.on('connection', (socket) => {
+  console.log(`Student connected ${socket.id}`);
+
+  // socket.on('current_session', (data) => {
+  //   console.log(data)
+  //   //socket.to(student).emit('receive_message', data) 
+  //   //io.emit('receive_message', data)  // this need to emit to student portal
+  // })
+
+  // when someone leaves the chat room
+  socket.on("disconnect", () => {
+    console.log("student disconnected", socket.id)
+  })
+});
+
 io.on('connection', (socket) => {
   console.log(`User connected ${socket.id}`);
 
