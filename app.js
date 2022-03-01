@@ -34,16 +34,6 @@ app.use(handleServerErrors);
 io.on("connection", (socket) => {
   console.log(`User connected ${socket.id}`);
 
-  socket.on("student_login", (data) => {
-    console.log(data);
-    // socket.to(data).emit('receive_message', data)
-    //io.emit('current_slide', 'slide_id_123')
-  });
-
-  socket.on("test", (data) => {
-    console.log(data, "<<from student fe");
-  });
-
   socket.on("student_submit_response", (data) => {
     console.log(data, "<<form data from student fe");
     io.emit("new_response", data);
@@ -56,7 +46,7 @@ io.on("connection", (socket) => {
 
   socket.on("teacher_slide_stop", (slideId) => {
     console.log(`${slideId}-Stopped`);
-    io.emit("current_slide_stopped", `${slideId}-Stopped`);
+    io.emit("current_slide_stopped", slideId);
   });
 
   socket.on("disconnect", () => {
