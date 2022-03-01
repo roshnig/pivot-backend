@@ -12,8 +12,8 @@ const QuestionSchema = new mongoose.Schema({
 });
 
 const SlideSchema = new mongoose.Schema({
-  slideImageUrl: String,
-  slideId: String,
+  slideImageUrl: { type: String, required: true },
+  slideId: { type: String, required: true },
   question: QuestionSchema,
   responses: [ResponseSchema],
 });

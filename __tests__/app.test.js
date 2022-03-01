@@ -21,7 +21,7 @@ describe("GET /api", () => {
 
 describe("POST /api/presentations/", () => {
   const pres = JSON.parse(
-    '{"presentationId":"1Ozz-IETgND3YLc1vBshFtzqTchLou9XZ6yR4LEAbeHk","slides":{"presentationId":"1Ozz-IETgND3YLc1vBshFtzqTchLou9XZ6yR4LEAbeHk","slides":[{"slideId":"p","slideImageUrl":"https://lh6.googleusercontent.com/IZEyqatojKD2XYIkrsclJ-nJkJFFD1Bpg4NXTFY5gwUELudsXooS-WRPe2eKp5JFd3FBmW-drmy8fftBbqTfEw1t_ZP1cK2kQlenpd4mDelS0a5Nfc-Bs3fT6yhPD31e4BqHm0rS-s0UKTgQXRHnN4MUriQtBMj_Iyfd6sUKod-0gf4FS1JlgvGAYyWRB5-6ujg0s5nQPTU-p3YRliAfO2cMcvZEoj-twLRoeP57=s1600"},{"slideId":"g117ae802f4d_2_0","slideImageUrl":"https://lh4.googleusercontent.com/cx2_mI5dOx-pwcn6HSGTUfKFVqUiVWELIUPQN-Tma1iQWNElUPt02vOSBXEigUpkyL-pHFcW0jVrJMA0kBt9XdrzJN2Q4bGDQjKYMdYpKV7lhCLK_oCe9pDABp0jmcTfMsbMBfurAn3FtltzUNhSYUxEdCkRRsf1JDOC8JVFXkDloJu5LTVAKPJi18yPgFlMTe60q_O08xwXxPJ5DvXmHghvYqTKTQUf35RVGmIj=s1600"},{"slideId":"g117ae802f4d_2_5","slideImageUrl":"https://lh3.googleusercontent.com/dmhutxAbQ7bxIEvkmSsth_aHhkWvwTuky-kYL4uRjtTRtFrI3pxd8N1UW8Xeegqx_QUAj4XiDXQQKOpv0iZNQkNXwNOT7U8TlwoSgT2NivDzwPQQjQWwVekFonJR1Exx8QWwNx_lgSKDsM1KoUmjv8vxdrRCSoAmK7_-d9adKjskaempJ9t20Wcac-fdb9dmPiH7J2T2kP0fowJVas8gBTLsbSw4D6NUULvOh4kq=s1600"}]}}'
+    '{"presentationId":"1Ozz-IETgND3YLc1vBshFtzqTchLou9XZ6yR4LEAbeHk","slides":[{"slideId":"p","slideImageUrl":"https://lh3.googleusercontent.com/2mlKsBRojVl6uxe1J7MasmkbD0ZFmJyx8uOz6K_aKS_LWN470YaWrwGIrwAXV9J0tMjadLijymq1RF1SSeRER0GCid3BF4_59Sa52yflU5br9jc_wsMOFXjN4Ef4iEWkLhO1iVgZaMAi3fKAhozdwV3QY_X3lxZNlpxrstrQz5LtqtHy1KAIj29sqT4G2Q83y4shfHVvoMNDm0VCklI9In5o5lc2YH57vzFMlsTQ=s1600"},{"slideId":"g117ae802f4d_2_0","slideImageUrl":"https://lh6.googleusercontent.com/xOkF24MLWoS26KNNFodLDPOlnYdpboddOHpVqydqm0gQAf8W7y8drCKSdKkKVmbSRhI1nmaniuWFX7n9XGY1O7PqmS1jKbAG3DkP1pdfOxmhVI8R3ZpHE9EDQ84u_Ka3UmFsSYaDOOtQnn9yziwnq7RGWaADhd8Xmw3Lr9lXNKGF2As6_IKG6smWmM-sWsYXHgMmdr3Fx0gtXIGY8KpGUaRWVKYP2LallJ6c9zLf=s1600"},{"slideId":"g117ae802f4d_2_5","slideImageUrl":"https://lh3.googleusercontent.com/CpBJXXyugWnKTmtDHB6wG_44-2px_1gnoLAFBZD_ZIs1J07CKis4n8A61Rv5ZOc54ETEbd3G148Z9VJy9LWM1MP13L6qyiS87rNtL5qCspqrk-Y9ukLwSdz93UOHd4Y4wi5Tw_8Vctv0OhzZPs2QZURaS8vLMhtTBru216L1mhZvKXHyJZuFJcKT7hMh34J5q9wtZ12KnXM3_OuZZ2pQJRDKa8qX_2SWin__BO4R=s1600"}]}'
   );
   it("200: create presentation, returns saved document with a four character alphanumeric session id", () => {
     return request(app)
@@ -41,18 +41,12 @@ describe("GET /api/presentations/:sessionId", () => {
       .get(`/api/presentations/${sessionId}`)
       .expect(200)
       .then(({ body }) => {
-        console.log(body.presentation.slides[0]);
-        expect(body.presentation).toMatchObject({
-          sessionId: expect.any(String),
-          presentationId: expect.any(String),
-          slides: expect.arrayContaining([
-            expect.ObjectContaining({
-              slideId: expect.any(String),
-              slideImageUrl: expect.any(String),
-              question: expect.any(Object),
-            }),
-          ]),
-        });
+        expect(body.presentation).toEqual(
+          expect.objectContaining({
+            sessionId: expect.any(String),
+            presentationId: expect.any(String),
+          })
+        );
       });
   });
   test("404: sessionId not found", () => {
