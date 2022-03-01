@@ -45,18 +45,18 @@ io.on("connection", (socket) => {
   });
 
   socket.on("student_submit_response", (data) => {
-    console.log(data, "<<from student fe");
+    console.log(data, "<<form data from student fe");
     io.emit("new_response", data);
   });
 
   socket.on("teacher_current_slide", (slideId) => {
-    console.log(slideId);
-    io.emit("current_slide", "slideId"); //need to test this
+    console.log(`${slideId}-current presentation slide`);
+    io.emit("current_slide", slideId);
   });
 
   socket.on("teacher_slide_stop", (slideId) => {
-    console.log(slideId);
-    // io.emit('current_slide_responses', slideResponseData) //need to emit all responses for that slide
+    console.log(`${slideId}-Stopped`);
+    io.emit("current_slide_stopped", `${slideId}-Stopped`);
   });
 
   socket.on("disconnect", () => {
