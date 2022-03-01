@@ -53,3 +53,14 @@ describe("GET /api/presentations/:sessionId", () => {
     return request(app).get(`/api/presentations/INVALIDSESSIONID`).expect(404);
   });
 });
+
+describe("GET /public/pivot_logo.png", () => {
+  test("200: returns image", () => {
+    return request(app)
+      .get("/public/pivot_logo.png")
+      .expect(200)
+      .then((res) => {
+        console.log(res);
+      });
+  });
+});
