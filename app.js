@@ -45,7 +45,7 @@ io.on("connection", (socket) => {
 
   socket.on('student_submit_response', (data) => {
     console.log(data, '<<from student fe')
-    io.emit('response_count', 1)
+    io.emit('new_response', data)
   })
 
   socket.on("teacher_current_slide", (slideId) => {
