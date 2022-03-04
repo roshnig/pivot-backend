@@ -18,6 +18,13 @@ https://rhs-pivot-backend.herokuapp.com/ --backend
 
 The teacher frontend allows for viewing of the original presentation slides as static images, and control of polling. Students join via a QR code generated on the teacher frontend, which opens the student frontend for them and allows them to vote on polling questions. They receive feedback based on their answer, and the teacher can display the total results on the board.
 
+### Technical Overview
+
+Pivot starts from Google slides. Once you have installed the add-on, clicking the red “Enable responses” button adds the question data to the google slide document itself as a key:value pair using the SlidesApp Document Properties, where the key is the ObjectId of the current slide, and the value is stringified JSON containing the question data.
+Upon clicking the ‘Present with Pivot’ button, static thumbnail images of the slides are grabbed using the Slides API. The saved question data is retrieved, and all is sent to our backend as a POST request. The response value is a 4 character alphanumeric randomly generated sessionId. This is appended to the teacher frontend url and is launched in a new window.
+The teacher frontend now has the session id from the url params, and uses this to obtain the slide data as a GET request from the backend. This enables it to display the slide images and decide whether to allow polling, and what feedback to give to the audience upon answer submission. It also generates a QR code, allowing members of the audience to join.
+The student frontend also takes the session Id from the params and gets the data from the server, to decide hw many response buttons to render and what feedback to give to students.
+
 ### How to use
 
 Follow how to create the google apps script project which is included below.
