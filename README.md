@@ -9,7 +9,7 @@ This app is part of Pivot google plugin which is not published yet at market pla
 
 ### Repos
 
-https://github.com/roshnig/pivot-frontend-teacher.git --teache
+https://github.com/roshnig/pivot-frontend-teacher.git --teacher
 https://github.com/isle88/pivot-frontend --student
 https://github.com/roshnig/pivot-backend.git --backend
 
