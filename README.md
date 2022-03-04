@@ -4,15 +4,15 @@ This app require codes from three diffrent repository.
 
 ### Repos
 
+https://github.com/roshnig/pivot-frontend-teacher.git --teache
 https://github.com/isle88/pivot-frontend --student
-https://github.com/roshnig/pivot-frontend-teacher.git --teacher
 https://github.com/roshnig/pivot-backend.git --backend
 
 ### Hosted version
 
-https://rhs-pivot-backend.herokuapp.com/ --backend
-https://pivot-fe.netlify.app/ --student
 https://pivot-fe-presenter.netlify.app -- teacher
+https://pivot-fe.netlify.app/ --student
+https://rhs-pivot-backend.herokuapp.com/ --backend
 
 ### Description
 
